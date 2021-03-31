@@ -7,8 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="237,125,0,0" VerticalAlignment="Top" Width="261" Height="28" Click="btnSubmit_Click"/>
-        <TextBlock x:Name="txbResults" HorizontalAlignment="Left" Margin="206,185,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="110" Width="357"/>
+        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="10,346,0,0" VerticalAlignment="Top" Width="60" Height="28" Click="btnEdit_Click"/>
+        <ListBox x:Name="lbItems" HorizontalAlignment="Left" Height="331" Margin="10,10,0,0" VerticalAlignment="Top" Width="374" MouseDoubleClick="lbItems_MouseDoubleClick"/>
+        <Label Content="Id" HorizontalAlignment="Left" Margin="389,10,0,0" VerticalAlignment="Top" Height="23" Width="131"/>
+        <TextBox x:Name="txbId" HorizontalAlignment="Left" Height="23" Margin="525,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="259"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="389,34,0,0" VerticalAlignment="Top" Height="23" Width="131"/>
+        <TextBox x:Name="txbName" HorizontalAlignment="Left" Height="23" Margin="525,34,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="259"/>
+        <Label Content="Location" HorizontalAlignment="Left" Margin="389,60,0,0" VerticalAlignment="Top" Height="23" Width="131"/>
+        <TextBox x:Name="txbLocation" HorizontalAlignment="Left" Height="23" Margin="525,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="259"/>
+        <Label Content="Weight" HorizontalAlignment="Left" Margin="389,90,0,0" VerticalAlignment="Top" Height="23" Width="131"/>
+        <TextBox x:Name="txbWeight" HorizontalAlignment="Left" Height="23" Margin="525,90,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="259"/>
+        <Label Content="Cost" HorizontalAlignment="Left" Margin="389,120,0,0" VerticalAlignment="Top" Height="23" Width="131"/>
+        <TextBox x:Name="txbCost" HorizontalAlignment="Left" Height="23" Margin="525,120,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="259"/>
+        <Label Content="Remarks" HorizontalAlignment="Left" Margin="389,150,0,0" VerticalAlignment="Top" Height="23" Width="131"/>
+        <TextBox x:Name="txbRemarks" HorizontalAlignment="Left" Height="78" Margin="525,150,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="259"/>
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="525,233,0,0" VerticalAlignment="Top" Width="75" Click="btnAdd_Click"/>
 
     </Grid>
 </Window>

@@ -21,37 +21,54 @@ namespace DBDemo
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<InventoryItem> items = new List<InventoryItem>();
+        InventoryItemsService service = new InventoryItemsService();
         public MainWindow()
         {
             InitializeComponent();
+            RefreshView();
+            lbItems.SelectedIndex = 0;
+            ShowSelectedItem();
         }
 
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        private void RefreshView()
         {
-            string connStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Rob011235\source\repos\rgarner7cnmedu\CIS1280\CIS1280Demos\DBDemo\DBDemo\DemoDB.mdf;Integrated Security=True";
+            items = service.GetAll();
+            lbItems.ItemsSource = items;
+            lbItems.Items.Refresh();
+        }
 
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                conn.Open();
-                //get data from database 
-                string select = "SELECT * FROM InventoryItem;";
-                SqlCommand cmd = new SqlCommand(select, conn);
-                SqlDataReader reader = cmd.ExecuteReader();
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            ShowSelectedItem();
+        }
 
-                while (reader.Read())
-                {
-                    int id = reader.GetInt32(0);
-                    string name = reader.GetString(1);
-                    int location = reader.GetInt32(2);
-                    double weight = reader.GetDouble(3);
-                    decimal cost = reader.GetDecimal(4);
-                    string remarks = reader.GetString(5);
+        private void lbItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ShowSelectedItem();
+        }
 
-                    //display it
-                    txbResults.Text += $"{id}: {name} {location} {weight} {cost} \n{remarks}\n";
-                }
-                conn.Close();                
-            }
+        private void ShowSelectedItem()
+        {
+            InventoryItem item = (InventoryItem)lbItems.SelectedItem;
+            txbId.Text = item.Id.ToString();
+            txbName.Text = item.Name;
+            txbLocation.Text = item.Location.ToString();
+            txbWeight.Text = item.Weight.ToString();
+            txbCost.Text = item.Cost.ToString("c");
+            txbRemarks.Text = item.Remarks;
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryItem item = new InventoryItem();
+            item.Name = txbName.Text;
+            item.Location = int.Parse(txbLocation.Text);
+            item.Weight = double.Parse(txbWeight.Text);
+            item.Cost = Decimal.Parse(txbCost.Text);
+            item.Remarks = txbRemarks.Text;
+            service.AddItem(item);
+            RefreshView();
         }
     }
 }
