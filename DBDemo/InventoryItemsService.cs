@@ -15,7 +15,7 @@ namespace DBDemo
 
             List<InventoryItem> items=new List<InventoryItem>();
 
-            string connStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Rob011235\source\repos\rgarner7cnmedu\CIS1280\CIS1280Demos\DBDemo\DBDemo\DemoDB.mdf;Integrated Security=True";
+            string connStr = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
