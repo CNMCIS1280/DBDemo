@@ -65,9 +65,30 @@ namespace DBDemo
             item.Name = txbName.Text;
             item.Location = int.Parse(txbLocation.Text);
             item.Weight = double.Parse(txbWeight.Text);
-            item.Cost = Decimal.Parse(txbCost.Text);
+            item.Cost = Decimal.Parse(txbCost.Text,System.Globalization.NumberStyles.Currency);
             item.Remarks = txbRemarks.Text;
             service.AddItem(item);
+            RefreshView();
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryItem itemToDelete = (InventoryItem) lbItems.SelectedItem;
+            service.DeleteItem(itemToDelete.Id);
+            RefreshView();
+
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryItem item = new InventoryItem();
+            item.Id = int.Parse(txbId.Text);
+            item.Name = txbName.Text;
+            item.Location = int.Parse(txbLocation.Text);
+            item.Weight = double.Parse(txbWeight.Text);
+            item.Cost = Decimal.Parse(txbCost.Text, System.Globalization.NumberStyles.Currency);
+            item.Remarks = txbRemarks.Text;
+            service.UpdateItem(item);
             RefreshView();
         }
     }
